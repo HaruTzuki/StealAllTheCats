@@ -8,7 +8,7 @@ public static class ApiEndpoints
 	{
 		private const string Base = $"{ApiBase}/cats";
 
-		public const string Create = Base;
+		public const string Fetch = $"{Base}/fetch";
 		public const string Get = $"{Base}/{{idOrCatId}}";
 		public const string GetAll = Base;
 	}

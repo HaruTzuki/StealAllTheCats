@@ -22,9 +22,9 @@ public class CatService(ICatRepository catRepository, IValidator<Cat> catValidat
 		return catRepository.GetCatByCatIdAsync(catId, cancellationToken);
 	}
 
-	public Task<IEnumerable<Cat>> GetAllAsync(CancellationToken cancellationToken = default)
+	public Task<IEnumerable<Cat>> GetAllAsync(GetAllCatsOptions options, CancellationToken cancellationToken = default)
 	{
 		//TODO: Validation
-		return catRepository.GetAllAsync(cancellationToken);
+		return catRepository.GetAllAsync(options, cancellationToken);
 	}
 }

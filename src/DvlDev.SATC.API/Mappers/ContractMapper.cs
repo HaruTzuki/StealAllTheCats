@@ -1,4 +1,5 @@
 ﻿using DvlDev.SATC.Application.Models;
+using DvlDev.SATC.Contracts.Requests;
 using DvlDev.SATC.Contracts.Responses;
 
 namespace DvlDev.SATC.API.Mappers;
@@ -25,6 +26,19 @@ public static class ContractMapper
 			Page = page,
 			PageSize = pageSize,
 			Total = totalCount
+		};
+	}
+
+	public static GetAllCatsOptions MapToOptions(this GetAllCatsRequest request)
+	{
+		return new GetAllCatsOptions
+		{
+			Tags = request.Tags,
+			SortField = request.SortBy?.Trim('+', '-'),
+			SortOrder = request.SortBy is null ? SortOrder.Unsorted :
+				request.SortBy.StartsWith('-') ? SortOrder.Descending : SortOrder.Ascending,
+			Page = request.Page,
+			PageSize = request.PageSize
 		};
 	}
 }

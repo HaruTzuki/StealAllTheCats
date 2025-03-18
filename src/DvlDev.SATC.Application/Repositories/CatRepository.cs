@@ -40,7 +40,7 @@ public class CatRepository(DataContext context) : ICatRepository
 		return cat;
 	}
 
-	public async Task<IEnumerable<Cat>> GetAllAsync(CancellationToken cancellationToken = default)
+	public async Task<IEnumerable<Cat>> GetAllAsync(GetAllCatsOptions options, CancellationToken cancellationToken = default)
 	{
 		var cats = await context.Cats.ToListAsync(cancellationToken);
 		

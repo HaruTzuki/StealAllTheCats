@@ -2,6 +2,6 @@
 
 public class GetAllCatsRequest : PagedRequest
 {
-	public required string? CatId { get; init; }
+	public required string? Tags { get; init; }
 	public required string? SortBy { get; init; } 
 }
