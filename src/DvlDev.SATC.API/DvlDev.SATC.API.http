@@ -1,0 +1,6 @@
+@DvlDev.SATC.API_HostAddress = http://localhost:5276
+
+GET {{DvlDev.SATC.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
