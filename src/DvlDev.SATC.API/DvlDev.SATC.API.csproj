@@ -12,6 +12,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\DvlDev.SATC.Application\DvlDev.SATC.Application.csproj" />
+      <ProjectReference Include="..\DvlDev.SATC.Contracts\DvlDev.SATC.Contracts.csproj" />
     </ItemGroup>
 
 </Project>

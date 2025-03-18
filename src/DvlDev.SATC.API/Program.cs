@@ -1,3 +1,4 @@
+using DvlDev.SATC.API.Mappers;
 using DvlDev.SATC.Application;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,6 +26,7 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
+app.UseMiddleware<ValidationMapperMiddleware>();
 app.MapControllers();
 
 app.Run();
