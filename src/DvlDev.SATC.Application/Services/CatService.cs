@@ -1,14 +1,15 @@
 ﻿using DvlDev.SATC.Application.Models;
 using DvlDev.SATC.Application.Repositories;
+using FluentValidation;
 
 namespace DvlDev.SATC.Application.Services;
 
-public class CatService(ICatRepository catRepository) : ICatService
+public class CatService(ICatRepository catRepository, IValidator<Cat> catValidator) : ICatService
 {
-	public Task<bool> CreateAsync(Cat cat, CancellationToken cancellationToken = default)
+	public async Task<bool> CreateAsync(Cat cat, CancellationToken cancellationToken = default)
 	{
-		// TODO: Validation
-		return catRepository.CreateAsync(cat, cancellationToken);
+		await catValidator.ValidateAndThrowAsync(cat, cancellationToken);
+		return await catRepository.CreateAsync(cat, cancellationToken);
 	}
 
 	public Task<Cat?> GetCatByIdAsync(int id, CancellationToken cancellationToken = default)
