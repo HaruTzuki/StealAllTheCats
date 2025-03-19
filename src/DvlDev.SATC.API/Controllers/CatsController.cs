@@ -7,12 +7,13 @@ using Microsoft.AspNetCore.Mvc;
 namespace DvlDev.SATC.API.Controllers;
 
 [ApiController]
-public class CatsController(ICatService catService, IHttpClientFactory httpClientFactory) : ControllerBase
+public class CatsController(ICatService catService) : ControllerBase
 {
 	[HttpPost(ApiEndpoints.Cats.Fetch)]
 	[ProducesResponseType(StatusCodes.Status201Created)]
 	public async Task<IActionResult> Fetch()
 	{
+		var result = await catService.FetchAsync();
 		return Created();
 	}
 	

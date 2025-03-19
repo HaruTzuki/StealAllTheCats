@@ -3,9 +3,9 @@
 public class Cat : BaseEntity
 {
 	public required string CatId { get; init; }
-	public required int Width { get; init; }
-	public required int Height { get; init; }
-	public required string Image { get; init; }
+	public int Width { get; init; }
+	public int Height { get; init; }
+	public string? Image { get; set; }
 
 	public List<CatTag> CatTags { get; set; } = [];
 }

@@ -18,4 +18,9 @@
       <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.1" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\DvlDev.SATC.Contracts\DvlDev.SATC.Contracts.csproj" />
+      <ProjectReference Include="..\DvlDev.SATC.Shared\DvlDev.SATC.Shared.csproj" />
+    </ItemGroup>
+
 </Project>
