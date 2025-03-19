@@ -8,4 +8,5 @@ public interface ICatService
 	Task<Cat?> GetCatByIdAsync(int id, CancellationToken cancellationToken = default);
 	Task<Cat?> GetCatByCatIdAsync(string catId, CancellationToken cancellationToken = default);
 	Task<IEnumerable<Cat>> GetAllAsync(GetAllCatsOptions options, CancellationToken cancellationToken = default);
+	Task<bool> FetchAsync(CancellationToken cancellationToken = default);
 }

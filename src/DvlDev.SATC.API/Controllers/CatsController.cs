@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace DvlDev.SATC.API.Controllers;
 
 [ApiController]
-public class CatsController(ICatService catService) : ControllerBase
+public class CatsController(ICatService catService, IHttpClientFactory httpClientFactory) : ControllerBase
 {
 	[HttpPost(ApiEndpoints.Cats.Fetch)]
 	[ProducesResponseType(StatusCodes.Status201Created)]

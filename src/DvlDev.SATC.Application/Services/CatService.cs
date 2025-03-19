@@ -4,7 +4,7 @@ using FluentValidation;
 
 namespace DvlDev.SATC.Application.Services;
 
-public class CatService(ICatRepository catRepository, IValidator<Cat> catValidator) : ICatService
+public class CatService(ICatRepository catRepository, IValidator<Cat> catValidator, IHttpClientFactory httpClientFactory) : ICatService
 {
 	public async Task<bool> CreateAsync(Cat cat, CancellationToken cancellationToken = default)
 	{
@@ -26,5 +26,12 @@ public class CatService(ICatRepository catRepository, IValidator<Cat> catValidat
 	{
 		//TODO: Validation
 		return catRepository.GetAllAsync(options, cancellationToken);
+	}
+	public async Task<bool> FetchAsync(CancellationToken cancellationToken = default)
+	{
+		using var httpClient = httpClientFactory.CreateClient();
+		var response = await httpClient.GetAsync("https://api.thecatapi.com/v1/images/search", cancellationToken);
+
+		return true;
 	}
 }

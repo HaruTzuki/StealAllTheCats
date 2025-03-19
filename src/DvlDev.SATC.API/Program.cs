@@ -1,9 +1,14 @@
 using DvlDev.SATC.API.Mappers;
 using DvlDev.SATC.Application;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
+
+// Configure Kestrel to listen on HTTPS
+
 // Add services to the container.
+builder.Services.AddDbContext<DataContext>(options => options.UseInMemoryDatabase("CatsDb"));
 
 // Adding Application Layer
 builder.Services.AddApplication();

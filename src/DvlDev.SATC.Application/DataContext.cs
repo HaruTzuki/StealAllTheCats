@@ -10,4 +10,9 @@ public class DataContext(DbContextOptions<DataContext> options) : DbContext(opti
 	public DbSet<Tag> Tags { get; set; }
 	public DbSet<CatTag> CatTags { get; set; }
 	#endregion
+	
+	protected override void OnModelCreating(ModelBuilder modelBuilder)
+	{
+		modelBuilder.ApplyConfigurationsFromAssembly(typeof(DataContext).Assembly);
+	}
 }
