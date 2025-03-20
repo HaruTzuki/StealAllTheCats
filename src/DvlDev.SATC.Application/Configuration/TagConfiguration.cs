@@ -16,6 +16,8 @@ public class TagConfiguration : IEntityTypeConfiguration<Tag>
 		builder.Property(tag => tag.Name).IsRequired().HasMaxLength(50);
 		builder.Property(tag => tag.CreatedOn).IsRequired();
 		
+		builder.HasIndex(tag => tag.Name).IsUnique();
+		
 		builder.HasMany(tag => tag.CatTags)
 			.WithOne(catTag => catTag.Tag)
 			.HasForeignKey(catTag => catTag.TagId)

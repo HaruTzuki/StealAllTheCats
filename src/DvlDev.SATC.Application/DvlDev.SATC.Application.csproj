@@ -9,7 +9,18 @@
     <ItemGroup>
       <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.11.0" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.14" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.14">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
       <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.14" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.14" />
+      <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\DvlDev.SATC.Contracts\DvlDev.SATC.Contracts.csproj" />
+      <ProjectReference Include="..\DvlDev.SATC.Shared\DvlDev.SATC.Shared.csproj" />
     </ItemGroup>
 
 </Project>

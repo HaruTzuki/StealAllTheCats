@@ -9,9 +9,8 @@ public static class ApplicationServiceCollectionExtensions
 {
 	public static IServiceCollection AddApplication(this IServiceCollection services)
 	{
-		services.AddSingleton<ICatRepository, CatRepository>();
-		services.AddSingleton<ICatService, CatService>();
-		
+		services.AddTransient<ICatRepository, CatRepository>();
+		services.AddTransient<ICatService, CatService>();
 		
 		// Validators
 		services.AddValidatorsFromAssemblyContaining<IApplicationMarker>(ServiceLifetime.Singleton);
