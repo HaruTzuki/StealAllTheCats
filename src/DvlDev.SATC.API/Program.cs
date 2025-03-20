@@ -47,6 +47,8 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.UseMiddleware<ValidationMapperMiddleware>();
+app.UseStaticFiles();
+app.UseRouting();
 app.MapControllers();
 
 app.Run();

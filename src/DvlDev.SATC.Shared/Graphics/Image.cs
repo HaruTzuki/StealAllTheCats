@@ -2,7 +2,7 @@
 
 public static class ImageHelper
 {
-	public static async Task<string> DownloadImageFromUrl(string url, string directory, string? fileName)
+	public static async Task<string> DownloadImageFromUrl(string url, string directory, string? webRoot, string? fileName)
 	{
 		if (string.IsNullOrEmpty(url))
 		{
@@ -32,7 +32,7 @@ public static class ImageHelper
 			fileName = $"{Guid.NewGuid():N}{extension}";
 		}
 		
-		var filePath = Path.Combine(directory, $"{fileName}{extension}");
+		var filePath = Path.Combine(webRoot??"", directory, $"{fileName}{extension}");
 		using var httpClient = new HttpClient();
 		var imageBytes = await httpClient.GetByteArrayAsync(url);
 		

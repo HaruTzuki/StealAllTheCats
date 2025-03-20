@@ -6,24 +6,25 @@ namespace DvlDev.SATC.API.Mappers;
 
 public static class ContractMapper
 {
-	public static CatResponse MapToResponse(this Cat cat)
+	public static CatResponse MapToResponse(this Cat cat, string? host)
 	{
+		
 		return new CatResponse
 		{
 			Id = cat.Id,
 			CatId = cat.CatId,
 			Width = cat.Width,
 			Height = cat.Height,
-			Image = cat.Image!,
+			Image = string.IsNullOrEmpty(host)? cat.Image! : host + cat.Image!,
 			Tags = cat.CatTags.Select(catTag => catTag.Tag!.Name).ToList()
 		};
 	}
 
-	public static CatsResponse MapToResponse(this IEnumerable<Cat> cats, int page, int pageSize, int totalCount)
+	public static CatsResponse MapToResponse(this IEnumerable<Cat> cats, int page, int pageSize, int totalCount, string? host)
 	{
 		return new CatsResponse
 		{
-			Items = cats.Select(c => c.MapToResponse()),
+			Items = cats.Select(c => c.MapToResponse(host)),
 			Page = page,
 			PageSize = pageSize,
 			Total = totalCount
