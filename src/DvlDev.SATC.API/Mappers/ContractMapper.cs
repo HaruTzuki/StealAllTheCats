@@ -14,7 +14,8 @@ public static class ContractMapper
 			CatId = cat.CatId,
 			Width = cat.Width,
 			Height = cat.Height,
-			Image = cat.Image
+			Image = cat.Image!,
+			Tags = cat.CatTags.Select(catTag => catTag.Tag!.Name).ToList()
 		};
 	}
 
@@ -33,7 +34,7 @@ public static class ContractMapper
 	{
 		return new GetAllCatsOptions
 		{
-			Tags = request.Tags,
+			Tags = request.Tag,
 			SortField = request.SortBy?.Trim('+', '-'),
 			SortOrder = request.SortBy is null ? SortOrder.Unsorted :
 				request.SortBy.StartsWith('-') ? SortOrder.Descending : SortOrder.Ascending,

@@ -11,6 +11,7 @@ namespace DvlDev.SATC.Application.Services;
 public class CatService(
 	ICatRepository catRepository,
 	IValidator<Cat> catValidator,
+	IValidator<GetAllCatsOptions> getAllCatsOptionsValidator,
 	IHttpClientFactory httpClientFactory,
 	ILogger<CatService> logger) : ICatService
 {
@@ -30,10 +31,10 @@ public class CatService(
 		return catRepository.GetCatByCatIdAsync(catId, cancellationToken);
 	}
 
-	public Task<IEnumerable<Cat>> GetAllAsync(GetAllCatsOptions options, CancellationToken cancellationToken = default)
+	public async Task<IEnumerable<Cat>> GetAllAsync(GetAllCatsOptions options, CancellationToken cancellationToken = default)
 	{
-		//TODO: Validation
-		return catRepository.GetAllAsync(options, cancellationToken);
+		await getAllCatsOptionsValidator.ValidateAndThrowAsync(options, cancellationToken);
+		return await catRepository.GetAllAsync(options, cancellationToken);
 	}
 
 	public async Task<bool> FetchAsync(CancellationToken cancellationToken = default)
@@ -103,5 +104,10 @@ public class CatService(
 		}
 
 		return true;
+	}
+
+	public Task<int> GetCountAsync(string? tag, CancellationToken cancellationToken = default)
+	{
+		return catRepository.GetCountAsync(tag, cancellationToken);
 	}
 }

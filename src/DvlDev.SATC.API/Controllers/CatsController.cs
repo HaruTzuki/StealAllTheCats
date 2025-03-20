@@ -14,10 +14,13 @@ public class CatsController(ICatService catService) : ControllerBase
 	public async Task<IActionResult> Fetch()
 	{
 		var result = await catService.FetchAsync();
-		return Created();
+
+		return !result 
+			? StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while fetching cats.") 
+			: CreatedAtAction(nameof(GetAll), new {Page = 1, PageSize = 10}, null);
 	}
 	
-	[HttpPost(ApiEndpoints.Cats.Get)]
+	[HttpGet(ApiEndpoints.Cats.Get)]
 	[ProducesResponseType(typeof(CatResponse),StatusCodes.Status200OK)]
 	[ProducesResponseType(StatusCodes.Status404NotFound)]
 	public async  Task<IActionResult> Get([FromRoute] string idOrCatId, CancellationToken cancellationToken = default)
@@ -35,7 +38,7 @@ public class CatsController(ICatService catService) : ControllerBase
 		return Ok(response);
 	}
 
-	[HttpPost(ApiEndpoints.Cats.GetAll)]
+	[HttpGet(ApiEndpoints.Cats.GetAll)]
 	[ProducesResponseType(typeof(CatsResponse), StatusCodes.Status200OK)]
 	public async Task<IActionResult> GetAll([FromQuery] GetAllCatsRequest req,
 		CancellationToken cancellationToken = default)
@@ -44,7 +47,7 @@ public class CatsController(ICatService catService) : ControllerBase
 		
 		var cats = await catService.GetAllAsync(options, cancellationToken);
 		
-		var catsCount = cats.Count();
+		var catsCount = await catService.GetCountAsync(req.Tag, cancellationToken);
 		return Ok(cats.MapToResponse(req.Page, req.PageSize, catsCount));
 	}
 	

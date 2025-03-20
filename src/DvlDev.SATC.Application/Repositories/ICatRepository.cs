@@ -10,4 +10,5 @@ public interface ICatRepository
 	Task<Cat?> GetCatByCatIdAsync(string catId, CancellationToken cancellationToken = default);
 	Task<IEnumerable<Cat>> GetAllAsync(GetAllCatsOptions options, CancellationToken cancellationToken = default);
 	Task<bool> ExistsAsync(string catId, CancellationToken cancellationToken = default);
+	Task<int> GetCountAsync(string? tag, CancellationToken cancellationToken = default);
 }
