@@ -15,12 +15,19 @@
       </PackageReference>
       <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.14" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.14" />
+      <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.1" />
       <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.1" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\DvlDev.SATC.Contracts\DvlDev.SATC.Contracts.csproj" />
       <ProjectReference Include="..\DvlDev.SATC.Shared\DvlDev.SATC.Shared.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Microsoft.AspNetCore.Hosting.Abstractions">
+        <HintPath>..\..\..\..\..\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.13\Microsoft.AspNetCore.Hosting.Abstractions.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
 </Project>

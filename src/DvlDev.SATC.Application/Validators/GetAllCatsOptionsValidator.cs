@@ -3,11 +3,11 @@ using FluentValidation;
 
 namespace DvlDev.SATC.Application.Validators;
 
-public class GetAllMoviesOptionsValidator : AbstractValidator<GetAllCatsOptions>
+public class GetAllCatsOptionsValidator : AbstractValidator<GetAllCatsOptions>
 {
 	private static readonly string[] AcceptedOrderByValues = ["id", "catid", "width", "height"];
 
-	public GetAllMoviesOptionsValidator()
+	public GetAllCatsOptionsValidator()
 	{
 		RuleFor(x => x.SortField)
 			.Must(x => x is null || AcceptedOrderByValues.Contains(x, StringComparer.OrdinalIgnoreCase))

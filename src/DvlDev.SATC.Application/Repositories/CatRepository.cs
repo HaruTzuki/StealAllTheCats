@@ -123,6 +123,10 @@ public class CatRepository(DataContext context) : ICatRepository
 
 	public Task<int> GetCountAsync(string? tag, CancellationToken cancellationToken = default)
 	{
+		if (tag?.Trim() == string.Empty)
+		{
+			tag = null;
+		}
 		return context.Cats.CountAsync(x => tag == null || x.CatTags.Any(ct => ct.Tag.Name == tag), cancellationToken);
 	}
 }

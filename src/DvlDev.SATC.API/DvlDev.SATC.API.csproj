@@ -25,7 +25,35 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="images\" />
+      <Folder Include="wwwroot\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="wwwroot\images\5iYq9NmT1.jpg" />
+      <None Include="wwwroot\images\83htMb1AJ.jpg" />
+      <None Include="wwwroot\images\c9sGDkRoi.jpg" />
+      <None Include="wwwroot\images\d8sbdRtLJ.jpg" />
+      <None Include="wwwroot\images\EPF2ejNS0.jpg" />
+      <None Include="wwwroot\images\ErPMMvcv2.jpg" />
+      <None Include="wwwroot\images\EXe1GhbrN.jpg" />
+      <None Include="wwwroot\images\GrPErz7EA.jpg" />
+      <None Include="wwwroot\images\hYG6uIRWL.jpg" />
+      <None Include="wwwroot\images\i9HsL15nJ.jpg" />
+      <None Include="wwwroot\images\L5QYxsrYw.jpg" />
+      <None Include="wwwroot\images\luT74s8zp.jpg" />
+      <None Include="wwwroot\images\N5RX2nuGB.jpg" />
+      <None Include="wwwroot\images\N8bl5RjPG.jpg" />
+      <None Include="wwwroot\images\OGTWqNNOt.jpg" />
+      <None Include="wwwroot\images\pmhGxB9-m.jpg" />
+      <None Include="wwwroot\images\UYLI_E-SZ.jpg" />
+      <None Include="wwwroot\images\VsxceZVop.jpg" />
+      <None Include="wwwroot\images\VuFcqjORh.jpg" />
+      <None Include="wwwroot\images\wLFWzKgkf.jpg" />
+      <None Include="wwwroot\images\xn-iDzymA.jpg" />
+      <None Include="wwwroot\images\yFwzO96ds.jpg" />
+      <None Include="wwwroot\images\Yt4_Z0aDC.jpg" />
+      <None Include="wwwroot\images\Z0X1tZQIt.jpg" />
+      <None Include="wwwroot\images\ZGoY_Ivly.jpg" />
     </ItemGroup>
 
 </Project>
