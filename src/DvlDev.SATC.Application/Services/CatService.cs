@@ -4,7 +4,6 @@ using DvlDev.SATC.Application.Repositories;
 using DvlDev.SATC.Contracts.Responses;
 using DvlDev.SATC.Shared.Graphics;
 using FluentValidation;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Logging;
 
 namespace DvlDev.SATC.Application.Services;
@@ -14,9 +13,10 @@ public class CatService(
 	IValidator<Cat> catValidator,
 	IValidator<GetAllCatsOptions> getAllCatsOptionsValidator,
 	IHttpClientFactory httpClientFactory,
-	IWebHostEnvironment webHostEnvironment,
 	ILogger<CatService> logger) : ICatService
 {
+	const string WebRoot = "wwwroot";
+	
 	public async Task<bool> CreateAsync(Cat cat, CancellationToken cancellationToken = default)
 	{
 		await catValidator.ValidateAndThrowAsync(cat, cancellationToken);
@@ -87,7 +87,7 @@ public class CatService(
 						});
 					}
 
-					catModel.Image = await ImageHelper.DownloadImageFromUrl(cat.Url, "images", webHostEnvironment.WebRootPath, catModel.CatId);
+					catModel.Image = await ImageHelper.DownloadImageFromUrl(cat.Url, "images", WebRoot, catModel.CatId);
 
 					_cats.Add(catModel);
 				}

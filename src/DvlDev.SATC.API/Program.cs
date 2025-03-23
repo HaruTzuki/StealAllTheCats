@@ -10,7 +10,7 @@ var config = builder.Configuration;
 
 // Add services to the container.
 builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer(config.GetConnectionString("DefaultConnection")));
-#if DEBUG
+
 #pragma warning disable ASP0000
 using (var scope = builder.Services.BuildServiceProvider().CreateScope())
 #pragma warning restore ASP0000
@@ -19,7 +19,6 @@ using (var scope = builder.Services.BuildServiceProvider().CreateScope())
 	context.Database.EnsureCreated(); // Ensures the database is initialized
 	context.SaveChanges(); // Explicitly save data, in case some changes were made
 }
-#endif
 
 
 // Adding Application Layer
@@ -29,6 +28,13 @@ builder.Services.AddHttpClients(config);
 
 
 builder.Services.AddControllers();
+builder.Services.AddCors(options =>
+{
+	options.AddPolicy("AllowAll", policy =>
+	{
+		policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+	});
+});
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -45,9 +51,11 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+app.UseCors("AllowAll");
 
 app.UseMiddleware<ValidationMapperMiddleware>();
 app.UseStaticFiles();
+
 app.UseRouting();
 app.MapControllers();
 
