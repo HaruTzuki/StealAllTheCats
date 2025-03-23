@@ -21,7 +21,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\src\DvlDev.SATC.Shared\DvlDev.SATC.Shared.csproj" />
+      <ProjectReference Include="..\..\DvlDev.SATC.Shared\DvlDev.SATC.Shared.csproj" />
     </ItemGroup>
 
 </Project>

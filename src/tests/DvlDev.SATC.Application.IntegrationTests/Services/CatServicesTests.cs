@@ -23,6 +23,8 @@ public class CatServicesTests
 		ICatRepository catRepository = new MockCatRepository();
 		var catValidator = new CatValidator();
 		var getAllCatsOptionsValidator = new GetAllCatsOptionsValidator();
+
+		var filePath = Path.Combine(AppContext.BaseDirectory, "integrationdata", "api.json");
 		
 		var handlerMock = new Mock<HttpMessageHandler>(MockBehavior.Strict);
 		handlerMock
@@ -34,7 +36,7 @@ public class CatServicesTests
 			.ReturnsAsync(new HttpResponseMessage
 			{
 				StatusCode = HttpStatusCode.OK,
-				Content = new StringContent(File.ReadAllText("integrationdata\\api.json")),
+				Content = new StringContent(File.ReadAllText(filePath))
 			});
 		handlerMock
 			.Protected()
@@ -49,8 +51,7 @@ public class CatServicesTests
 			.Returns(httpClient);
 		
 		// Create mock for IWebHostEnvironment.
-		var webHostEnvironmentMock = new Mock<IWebHostEnvironment>();
-		webHostEnvironmentMock.Setup(env => env.WebRootPath).Returns("c:\\temp");
+		
 
 		// Create mock for ILogger<CatService>.
 		var loggerMock = new Mock<ILogger<CatService>>();
@@ -60,7 +61,6 @@ public class CatServicesTests
 			catValidator,
 			getAllCatsOptionsValidator,
 			httpClientFactoryMock.Object,
-			webHostEnvironmentMock.Object,
 			loggerMock.Object);
 	}
 	
@@ -362,7 +362,7 @@ public class MockCatRepository : ICatRepository
 
 	private static async Task InitialiseCats()
 	{
-		var jsonContent = JsonSerializer.Deserialize<IEnumerable<CaaSResponse.Cat>>(await File.ReadAllTextAsync("integrationdata\\api.json"));
+		var jsonContent = JsonSerializer.Deserialize<IEnumerable<CaaSResponse.Cat>>(await File.ReadAllTextAsync("integrationdata/api.json"));
 
 		var count = 0;
 		await Task.WhenAll(jsonContent!.Select(cat =>
